@@ -47,22 +47,17 @@
   /* ---------- Hero photo + wave ---------- */
   .hero-photo {
     position: relative;
-    height: 340px;
+    height: 380px;
     background: var(--panel);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background-image: url('photo_5839174860196745272_y.jpg');
+    background-size: cover;
+    background-position: center;
   }
   .hero-photo .hint { color: var(--muted); font-size: 14px; z-index: 1; }
-  .hero-photo::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(201,161,94,0.10), transparent 45%),
-      radial-gradient(circle at 80% 70%, rgba(95,143,174,0.10), transparent 45%);
-  }
   .wave { display: block; width: 100%; height: 70px; margin-top: -1px; }
 
   /* ---------- Ad banner ---------- */
@@ -175,9 +170,8 @@
   </div>
 </header>
 
-<!-- عکس شرکت آلفا -->
-<div class="hero-photo" style="background-image: url('photo_5839174860196745272_y.jpg'); background-size: cover; background-position: center;">
-</div>
+<!-- عکس شرکت آلفا (فیکس شده در قالب اصلی) -->
+<div class="hero-photo"></div>
 <svg class="wave" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
   <path d="M0,10 C300,70 900,-30 1200,25 L1200,0 L0,0 Z" fill="#12141b"></path>
   <path d="M0,10 C300,70 900,-30 1200,25" fill="none" stroke="#262b36" stroke-width="1.5"></path>
@@ -198,7 +192,6 @@
       <p>چند نما از خودِ اپلیکیشن نابغه.</p>
     </div>
     <div class="shots-grid">
-      <!-- TODO: هر کدوم رو با <img src="images/شماره.png"> جایگزین کن -->
       <div class="shot">عکس برنامه</div>
       <div class="shot">عکس برنامه</div>
       <div class="shot">عکس برنامه</div>
@@ -217,7 +210,6 @@
     <div class="feature-text">
       <h3>مرور دقیقاً سرِ وقتش</h3>
       <p>
-        <!-- TODO: این یه متنِ نمونه‌ست، هر وقت متنِ نهایی رو فرستادی جاش می‌ذاریم -->
         نابغه با روش لایتنر، هر مطلب رو تو جعبه‌ی مناسبش نگه می‌داره و دقیقاً وقتی که لازمه یادآوریت می‌کنه —
         نه زودتر، نه دیرتر. اینجوری وقتت رو صرفِ مرورِ چیزهایی که خوب بلدی نمی‌کنی.
       </p>
@@ -233,7 +225,6 @@
     <div class="feature-text">
       <h3>پیشرفتت رو ببین</h3>
       <p>
-        <!-- TODO: این یه متنِ نمونه‌ست، هر وقت متنِ نهایی رو فرستادی جاش می‌ذاریم -->
         هر مطلبی که یاد می‌گیری، از جعبه‌های نزدیک به جعبه‌های دور می‌ره — یعنی خودت به چشم می‌بینی
         چقدر پیشرفت کردی و چی هنوز نیاز به مرورِ بیشتر داره.
       </p>
@@ -246,7 +237,6 @@
   <div class="wrap">
     <h2>معرفی شرکت آلفا</h2>
     <p>
-      <!-- TODO: این یه متنِ نمونه‌ست، هر وقت متنِ نهایی رو فرستادی جاش می‌ذاریم -->
       شرکت آلفا با هدفِ ساده‌تر کردنِ یادگیری، اپلیکیشنِ نابغه رو ساخته — ابزاری برای کسایی که می‌خوان
       یاد بگیرن و واقعاً یادشون بمونه، نه اینکه فردا فراموش کنن.
     </p>
