@@ -20,176 +20,81 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--ink);
     color: var(--paper);
     font-family: 'Vazirmatn', Tahoma, sans-serif;
     line-height: 1.7;
   }
-
   a { color: inherit; text-decoration: none; }
-
   img { max-width: 100%; display: block; }
 
-  .wrap {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   /* ---------- Header ---------- */
-  header {
-    padding: 22px 0;
-    border-bottom: 1px solid var(--edge);
-  }
-  header .wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .brand-mark {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 17px;
-    letter-spacing: 0.5px;
-  }
+  header { padding: 22px 0; border-bottom: 1px solid var(--edge); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand-mark { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; }
   .brand-mark .dot {
-    width: 10px; height: 10px;
-    border-radius: 3px;
+    width: 10px; height: 10px; border-radius: 3px;
     background: linear-gradient(135deg, #c0605a, #c9a75e 45%, #5f8fae);
     flex-shrink: 0;
   }
-  nav a {
-    color: var(--muted);
-    font-size: 14px;
-    margin-inline-start: 28px;
-  }
+  nav a { color: var(--muted); font-size: 14px; margin-inline-start: 28px; }
   nav a:hover { color: var(--goldlight); }
 
-  /* ---------- Hero ---------- */
-  .hero {
-    padding: 88px 0 56px;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: clamp(34px, 6vw, 56px);
-    font-weight: 800;
-    line-height: 1.25;
-    max-width: 780px;
-    margin: 0 auto 20px;
-  }
-  .hero p.tagline {
-    color: var(--muted);
-    font-size: 17px;
-    max-width: 520px;
-    margin: 0 auto 34px;
-  }
-
-  .cta-row {
+  /* ---------- Hero photo + wave ---------- */
+  .hero-photo {
+    position: relative;
+    height: 340px;
+    background: var(--panel);
     display: flex;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 56px;
-  }
-  .btn {
-    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 600;
-    border: 1px solid transparent;
-  }
-  .btn-gold {
-    background: var(--gold);
-    color: var(--ink);
-  }
-  .btn-gold:hover { background: var(--goldlight); }
-  .btn-ghost {
-    background: transparent;
-    border-color: var(--edge);
-    color: var(--paper);
-  }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--goldlight); }
-
-  /* ---------- Review ladder — signature visual ---------- */
-  .ladder-label {
-    text-align: center;
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 14px;
-  }
-  .ladder {
-    display: flex;
     justify-content: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    padding: 0 12px;
+    overflow: hidden;
   }
-  .ladder span {
-    width: 34px;
-    height: 34px;
-    border-radius: 9px;
+  .hero-photo .hint { color: var(--muted); font-size: 14px; z-index: 1; }
+  .hero-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(201,161,94,0.10), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(95,143,174,0.10), transparent 45%);
   }
+  .wave { display: block; width: 100%; height: 70px; margin-top: -1px; }
 
-  /* ---------- Section shared ---------- */
-  section { padding: 72px 0; }
-  section.alt { background: var(--panel); border-top: 1px solid var(--edge); border-bottom: 1px solid var(--edge); }
-
-  .section-head {
-    max-width: 560px;
-    margin: 0 auto 44px;
+  /* ---------- Ad banner ---------- */
+  .ad-banner-wrap { padding: 40px 0 0; }
+  .ad-banner {
+    max-width: 1032px;
+    margin: 0 auto;
+    border: 2px dashed var(--edge);
+    border-radius: 20px;
+    padding: 46px 24px;
     text-align: center;
-  }
-  .section-head h2 {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 12px;
-  }
-  .section-head p {
     color: var(--muted);
     font-size: 15px;
   }
 
-  /* ---------- How it works ---------- */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-  }
-  .step {
-    padding: 26px;
-    border: 1px solid var(--edge);
-    border-radius: 14px;
-    border-inline-start: 4px solid var(--gold);
-  }
-  .step h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .step p {
-    color: var(--muted);
-    font-size: 14px;
-  }
+  /* ---------- App screenshots section ---------- */
+  section { padding: 64px 0; }
+  .section-head { max-width: 560px; margin: 0 auto 36px; text-align: center; }
+  .section-head h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+  .section-head p { color: var(--muted); font-size: 14px; }
 
-  /* ---------- Gallery ---------- */
-  .gallery {
+  .shots-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 18px;
+    max-width: 640px;
+    margin: 0 auto;
   }
   .shot {
-    aspect-ratio: 9 / 16;
-    border-radius: 16px;
-    border: 1px dashed var(--edge);
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    border: 1px solid var(--edge);
     background: var(--panel2);
     display: flex;
     align-items: center;
@@ -197,38 +102,64 @@
     text-align: center;
     color: var(--muted);
     font-size: 13px;
-    padding: 20px;
+    padding: 16px;
   }
-  .shot.wide {
-    grid-column: span 3;
-    aspect-ratio: 21 / 9;
+
+  .download-row { text-align: center; margin-top: 34px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 34px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 1px solid transparent;
   }
+  .btn-gold { background: var(--gold); color: var(--ink); }
+  .btn-gold:hover { background: var(--goldlight); }
+
+  /* ---------- Alternating feature rows ---------- */
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 40px 0;
+  }
+  .feature-media {
+    aspect-ratio: 16 / 11;
+    border-radius: 16px;
+    border: 1px solid var(--edge);
+    background: var(--panel2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .feature-text h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .feature-text p { color: var(--muted); font-size: 14px; }
+
   @media (max-width: 720px) {
-    .gallery { grid-template-columns: 1fr; }
-    .shot.wide { grid-column: span 1; }
-    .steps { grid-template-columns: 1fr; }
+    .feature-row { grid-template-columns: 1fr; }
   }
+
+  /* ---------- About ---------- */
+  .about {
+    background: var(--panel);
+    border-top: 1px solid var(--edge);
+    border-bottom: 1px solid var(--edge);
+  }
+  .about h2 { font-size: 24px; font-weight: 800; margin-bottom: 18px; }
+  .about p { color: var(--muted); font-size: 15px; max-width: 720px; }
 
   /* ---------- Footer ---------- */
-  footer {
-    border-top: 1px solid var(--edge);
-    padding: 32px 0;
-    text-align: center;
-  }
-  footer p {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.9;
-  }
+  footer { padding: 32px 0; text-align: center; }
+  footer p { color: var(--muted); font-size: 12px; line-height: 1.9; }
 
-  /* ---------- Accessibility ---------- */
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-  }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
@@ -237,90 +168,89 @@
   <div class="wrap">
     <div class="brand-mark"><span class="dot"></span> شرکت آلفا</div>
     <nav>
+      <a href="#screenshots">برنامه</a>
       <a href="#download">دانلود</a>
-      <a href="#how">روش لایتنر</a>
-      <a href="#gallery">تصاویر</a>
+      <a href="#about">درباره‌ی ما</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
+<!-- عکس شرکت آلفا -->
+<div class="hero-photo">
+  <span class="hint"><!-- TODO: این پس‌زمینه رو با یه <img> از عکسِ واقعیِ شرکت آلفا جایگزین کن -->عکس شرکت آلفا</span>
+</div>
+<svg class="wave" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,10 C300,70 900,-30 1200,25 L1200,0 L0,0 Z" fill="#12141b"></path>
+  <path d="M0,10 C300,70 900,-30 1200,25" fill="none" stroke="#262b36" stroke-width="1.5"></path>
+</svg>
+
+<!-- بنر تبلیغات -->
+<div class="ad-banner-wrap wrap">
+  <div class="ad-banner">
+    جای بنرِ تبلیغاتی — این باکس فعلاً خالیه، هر وقت محتوای بنر رو فرستادی همینجا جاش می‌ذاریم.
+  </div>
+</div>
+
+<!-- برنامه‌ی لایتنر: گرید ۲×۲ اسکرین‌شات‌ها -->
+<section id="screenshots">
   <div class="wrap">
-    <h1>نابغه — یادگیری با روش لایتنر</h1>
-    <p class="tagline">هر مطلب رو یاد بگیر، سر وقتش مرور کن. نابغه با سیستم جعبه‌های لایتنر، دقیقاً زمانی که یادت میره یادآوریت می‌کنه.</p>
-    <div class="cta-row">
-      <a href="#download" class="btn btn-gold">⬇ دانلود رایگان نابغه</a>
-      <a href="#how" class="btn btn-ghost">روش لایتنر چیه؟</a>
+    <div class="section-head">
+      <h2>برنامه‌ی لایتنر</h2>
+      <p>چند نما از خودِ اپلیکیشن نابغه.</p>
+    </div>
+    <div class="shots-grid">
+      <!-- TODO: هر کدوم رو با <img src="images/شماره.png"> جایگزین کن -->
+      <div class="shot">عکس برنامه</div>
+      <div class="shot">عکس برنامه</div>
+      <div class="shot">عکس برنامه</div>
+      <div class="shot">عکس برنامه</div>
     </div>
 
-    <p class="ladder-label">۱۰ جعبه، از مرورِ فوری تا جاافتاده</p>
-    <div class="ladder" aria-hidden="true">
-      <span style="background:#c0605a"></span>
-      <span style="background:#c97a56"></span>
-      <span style="background:#c99356"></span>
-      <span style="background:#c9a75e"></span>
-      <span style="background:#c3b25a"></span>
-      <span style="background:#a8b562"></span>
-      <span style="background:#8fae6f"></span>
-      <span style="background:#6fae8a"></span>
-      <span style="background:#5fa3a3"></span>
-      <span style="background:#5f8fae"></span>
+    <div class="download-row" id="download">
+      <a href="https://drive.google.com/uc?export=download&id=FILE_ID" class="btn btn-gold">⬇ دانلود</a>
     </div>
   </div>
 </section>
 
-<section class="alt" id="how">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>روش لایتنر چیطوری کار می‌کنه</h2>
-      <p>یه روش ساده و اثبات‌شده برای اینکه چیزی که یاد گرفتی، واقعاً تو ذهنت بمونه.</p>
+<!-- ردیفِ اول: متن (راست) + عکس (چپ) -->
+<section>
+  <div class="wrap feature-row">
+    <div class="feature-text">
+      <h3>مرور دقیقاً سرِ وقتش</h3>
+      <p>
+        <!-- TODO: این یه متنِ نمونه‌ست، هر وقت متنِ نهایی رو فرستادی جاش می‌ذاریم -->
+        نابغه با روش لایتنر، هر مطلب رو تو جعبه‌ی مناسبش نگه می‌داره و دقیقاً وقتی که لازمه یادآوریت می‌کنه —
+        نه زودتر، نه دیرتر. اینجوری وقتت رو صرفِ مرورِ چیزهایی که خوب بلدی نمی‌کنی.
+      </p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <h3>مطلب رو ثبت کن</h3>
-        <p>هر نکته یا سوالی که می‌خوای حفظ بمونه رو به‌عنوان یه کارت ثبت می‌کنی.</p>
-      </div>
-      <div class="step">
-        <h3>سر وقتش مرور کن</h3>
-        <p>هر کارت تو یه جعبه‌ست. جعبه‌های نزدیک زودتر مرور می‌شن، جعبه‌های دور، دیرتر.</p>
-      </div>
-      <div class="step">
-        <h3>پیشرفت کن</h3>
-        <p>هر بار درست جواب بدی، کارت یه جعبه جلوتر می‌ره — یعنی کمتر مرورش می‌کنی، چون یادش گرفتی.</p>
-      </div>
+    <div class="feature-media">عکس</div>
+  </div>
+</section>
+
+<!-- ردیفِ دوم: عکس (راست) + متن (چپ) -->
+<section>
+  <div class="wrap feature-row">
+    <div class="feature-media">عکس</div>
+    <div class="feature-text">
+      <h3>پیشرفتت رو ببین</h3>
+      <p>
+        <!-- TODO: این یه متنِ نمونه‌ست، هر وقت متنِ نهایی رو فرستادی جاش می‌ذاریم -->
+        هر مطلبی که یاد می‌گیری، از جعبه‌های نزدیک به جعبه‌های دور می‌ره — یعنی خودت به چشم می‌بینی
+        چقدر پیشرفت کردی و چی هنوز نیاز به مرورِ بیشتر داره.
+      </p>
     </div>
   </div>
 </section>
 
-<section id="download">
-  <div class="wrap" style="text-align:center;">
-    <div class="section-head">
-      <h2>همین حالا دانلود کن</h2>
-      <p>نسخه‌ی دسکتاپ نابغه، رایگان و آماده‌ی نصب.</p>
-    </div>
-    <a href="#" class="btn btn-gold" style="padding:16px 40px;font-size:16px;">
-      ⬇ دانلود نابغه برای ویندوز
-    </a>
-    <p style="color:var(--muted);font-size:12px;margin-top:16px;">
-      <!-- TODO: لینک دانلود واقعی رو اینجا جایگزین کن، مثلاً لینک Release گیت‌هاب یا فایل exe -->
-      نسخه‌ی ۱٫۰ · حجم فایل: نامشخص
+<!-- معرفی شرکت آلفا -->
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>معرفی شرکت آلفا</h2>
+    <p>
+      <!-- TODO: این یه متنِ نمونه‌ست، هر وقت متنِ نهایی رو فرستادی جاش می‌ذاریم -->
+      شرکت آلفا با هدفِ ساده‌تر کردنِ یادگیری، اپلیکیشنِ نابغه رو ساخته — ابزاری برای کسایی که می‌خوان
+      یاد بگیرن و واقعاً یادشون بمونه، نه اینکه فردا فراموش کنن.
     </p>
-  </div>
-</section>
-
-<section class="alt" id="gallery">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>تصاویری از نابغه</h2>
-      <p>چند نما از اپلیکیشن و برند آلفا.</p>
-    </div>
-    <div class="gallery">
-      <!-- TODO: هر کدوم از این باکس‌ها رو با یه تگ <img src="images/شماره.jpg" alt="..."> جایگزین کن -->
-      <div class="shot wide">تصویر اصلی برند / بنر (جایگزین کن)</div>
-      <div class="shot">اسکرین‌شات صفحه‌ی پوشه‌ها</div>
-      <div class="shot">اسکرین‌شات صفحه‌ی لایتنر</div>
-      <div class="shot">اسکرین‌شات صفحه‌ی مرور مطلب</div>
-    </div>
   </div>
 </section>
 
