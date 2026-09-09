@@ -7,6 +7,7 @@
 <meta name="description" content="نابغه — اپلیکیشن یادگیری با روش لایتنر، ساخته‌ی شرکت آلفا. دانلود رایگان.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root {
     --ink: #0d0f14;
@@ -26,7 +27,7 @@
     color: var(--paper);
     font-family: 'Vazirmatn', Tahoma, sans-serif;
     line-height: 1.7;
-    padding-top: 75px; /* ایجاد فضا برای اینکه هدر روی عکس اول نیفتد */
+    padding-top: 75px;
   }
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
@@ -39,20 +40,28 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--ink); /* رنگ پس‌زمینه برای اینکه پشت منو شفاف نباشد */
+    background: var(--ink);
     border-bottom: 1px solid var(--edge); 
     z-index: 1000;
     padding: 18px 0; 
   }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   .brand-mark { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; }
   .brand-mark .dot {
     width: 10px; height: 10px; border-radius: 3px;
     background: linear-gradient(135deg, #c0605a, #c9a75e 45%, #5f8fae);
     flex-shrink: 0;
   }
-  nav a { color: var(--muted); font-size: 14px; margin-inline-start: 28px; }
+  
+  .nav-wrap { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  nav { display: flex; align-items: center; gap: 28px; }
+  nav a { color: var(--muted); font-size: 14px; }
   nav a:hover { color: var(--goldlight); }
+
+  /* ---------- Social Icons ---------- */
+  .social-links { display: flex; align-items: center; gap: 14px; border-inline-start: 1px solid var(--edge); padding-inline-start: 22px; }
+  .social-links a { color: var(--muted); font-size: 16px; transition: color 0.2s; }
+  .social-links a:hover { color: var(--goldlight); }
 
   /* ---------- Hero photo + wave ---------- */
   .hero-photo {
@@ -223,11 +232,18 @@
 <header>
   <div class="wrap">
     <div class="brand-mark"><span class="dot"></span> شرکت آلفا</div>
-    <nav>
-      <a href="#screenshots">برنامه</a>
-      <a href="#download">دانلود</a>
-      <a href="#about">درباره‌ی ما</a>
-    </nav>
+    <div class="nav-wrap">
+      <nav>
+        <a href="#screenshots">برنامه</a>
+        <a href="#download">دانلود</a>
+        <a href="#about">درباره‌ی ما</a>
+      </nav>
+      <div class="social-links">
+        <a href="لینک_تلگرام_شما" target="_blank" title="تلگرام"><i class="fab fa-telegram-plane"></i></a>
+        <a href="لینک_یوتیوب_شما" target="_blank" title="یوتیوب"><i class="fab fa-youtube"></i></a>
+        <a href="لینک_اینستاگرام_شما" target="_blank" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
   </div>
 </header>
 
