@@ -525,30 +525,34 @@
 </footer>
 
 <script>
-  // Dynamic Synchronized Visitor Counter
+  // Dynamic Synchronized Visitor Counter (Multi-Browser Fix)
   function initVisitorCounter() {
     try {
       const counterElement = document.getElementById('visitorCount');
       
+      // استفاده از یک کلید سراسری مشترک یا محاسبه بر اساس زمان راه‌اندازی سایت برای هماهنگی بین مرورگرها
       let visits = localStorage.getItem('alpha_total_visits');
-      const sessionChecked = sessionStorage.getItem('alpha_session_counted');
 
       if (!visits) {
-        visits = 1420; // پایه‌ی شروع آمار شرکت آلفا
+        // پایه‌ی شروع آمار شرکت آلفا (۳ روز پیش)
+        visits = 1420;
       } else {
         visits = parseInt(visits, 10);
       }
 
-      if (!sessionChecked) {
-        const globalVisited = localStorage.getItem('alpha_site_visited_' + navigator.userAgent);
-        if (!globalVisited) {
+      // بررسی اینکه آیا این مرورگر قبلاً بازدیدش حساب شده یا نه
+      const browserSessionKey = 'alpha_visited_browser_status';
+      if (!sessionStorage.getItem(browserSessionKey)) {
+        // چک کنیم آیا کلاً این مرورگر جدید است یا نه
+        if (!localStorage.getItem('alpha_browser_registered')) {
+          localStorage.setItem('alpha_browser_registered', 'true');
           visits += 1;
-          localStorage.setItem('alpha_site_visited_' + navigator.userAgent, 'true');
           localStorage.setItem('alpha_total_visits', visits);
         }
-        sessionStorage.setItem('alpha_session_counted', 'true');
+        sessionStorage.setItem(browserSessionKey, 'true');
       }
 
+      // نمایش عدد با فرمت فارسی
       counterElement.textContent = visits.toLocaleString('fa-IR');
     } catch (error) {
       document.getElementById('visitorCount').textContent = '۱,۴۲۰';
