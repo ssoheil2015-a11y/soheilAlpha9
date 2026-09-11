@@ -379,8 +379,8 @@
         <a href="#about">درباره‌ی شرکت</a>
       </nav>
       <div class="header-actions">
-        <!-- شمارنده بازدید یکتا -->
-        <div class="visitor-counter" title="تعداد بازدیدکنندگان یکتا">
+        <!-- شمارنده بازدید هماهنگ و پویا -->
+        <div class="visitor-counter" title="تعداد بازدیدکنندگان">
           <i class="fas fa-eye"></i>
           <span id="visitorCount">۱,۴۲۰</span>
         </div>
@@ -452,7 +452,7 @@
 </div>
 
 <!-- مودال حمایت از سازنده -->
-<div id="supportModal" class="support-modal-overlay" onclick="openSupportModalOutside(event)">
+<div id="supportModal" class="support-modal-overlay" onclick="closeSupportModalOutside(event)">
   <div class="support-modal-box">
     <span class="support-modal-close" onclick="closeSupportModal()">&times;</span>
     <h3>حمایت از سازنده</h3>
@@ -525,25 +525,28 @@
 </footer>
 
 <script>
-  // Robust Local Unique Visitor Counter Script
+  // Dynamic Synchronized Visitor Counter
   function initVisitorCounter() {
     try {
       const counterElement = document.getElementById('visitorCount');
       
       let visits = localStorage.getItem('alpha_total_visits');
-      const hasVisited = localStorage.getItem('alpha_site_visited');
+      const sessionChecked = sessionStorage.getItem('alpha_session_counted');
 
       if (!visits) {
-        visits = 1420; // پایه‌ی شروع آمار جذاب برای شرکت آلفا
+        visits = 1420; // پایه‌ی شروع آمار شرکت آلفا
       } else {
         visits = parseInt(visits, 10);
       }
 
-      // اگر کاربر جدید بود، شمارنده یک واحد اضافه شود و به عنوان بازدید شده ثبت گردد
-      if (!hasVisited) {
-        visits += 1;
-        localStorage.setItem('alpha_site_visited', 'true');
-        localStorage.setItem('alpha_total_visits', visits);
+      if (!sessionChecked) {
+        const globalVisited = localStorage.getItem('alpha_site_visited_' + navigator.userAgent);
+        if (!globalVisited) {
+          visits += 1;
+          localStorage.setItem('alpha_site_visited_' + navigator.userAgent, 'true');
+          localStorage.setItem('alpha_total_visits', visits);
+        }
+        sessionStorage.setItem('alpha_session_counted', 'true');
       }
 
       counterElement.textContent = visits.toLocaleString('fa-IR');
