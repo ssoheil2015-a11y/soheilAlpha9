@@ -70,8 +70,23 @@
   nav a { color: var(--muted); font-size: 14px; }
   nav a:hover { color: var(--goldlight); }
 
-  /* ---------- Social Icons ---------- */
-  .social-links { display: flex; align-items: center; gap: 14px; border-inline-start: 1px solid var(--edge); padding-inline-start: 22px; }
+  /* ---------- Visitor Counter & Social Icons ---------- */
+  .header-actions { display: flex; align-items: center; gap: 18px; border-inline-start: 1px solid var(--edge); padding-inline-start: 22px; flex-wrap: wrap; }
+  
+  .visitor-counter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    background: var(--panel2);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--edge);
+  }
+  .visitor-counter i { color: var(--gold); }
+
+  .social-links { display: flex; align-items: center; gap: 14px; }
   .social-links a { color: var(--muted); font-size: 16px; transition: color 0.2s; cursor: pointer; }
   .social-links a:hover { color: var(--goldlight); }
 
@@ -363,12 +378,19 @@
         <a href="#download">معرفی برنامه</a>
         <a href="#about">درباره‌ی شرکت</a>
       </nav>
-      <div class="social-links">
-        <a href="https://t.me/soheilAlpha9" target="_blank" title="تلگرام"><i class="fab fa-telegram-plane"></i></a>
-        <a href="https://www.youtube.com/@starsoheil3590" target="_blank" title="یوتیوب"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.instagram.com/ssoheil1383/" target="_blank" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
-        <!-- دکمه جدید حمایت از سازنده -->
-        <a onclick="openSupportModal()" title="حمایت از سازنده"><i class="fas fa-heart" style="color: #c95e5e;"></i> حمایت</a>
+      <div class="header-actions">
+        <!-- شمارنده بازدید یکتا با شکل چشم -->
+        <div class="visitor-counter" title="تعداد بازدیدکنندگان یکتا">
+          <i class="fas fa-eye"></i>
+          <span id="visitorCount">...</span>
+        </div>
+        
+        <div class="social-links">
+          <a href="https://t.me/soheilAlpha9" target="_blank" title="تلگرام"><i class="fab fa-telegram-plane"></i></a>
+          <a href="https://www.youtube.com/@starsoheil3590" target="_blank" title="یوتیوب"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/ssoheil1383/" target="_blank" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
+          <a onclick="openSupportModal()" title="حمایت از سازنده"><i class="fas fa-heart" style="color: #c95e5e;"></i> حمایت</a>
+        </div>
       </div>
     </div>
   </div>
@@ -492,7 +514,7 @@
   </div>
 </section>
 
-    
+  
 <footer>
   <div class="wrap">
     <p>
@@ -503,6 +525,32 @@
 </footer>
 
 <script>
+  // Unique Visitor Counter using CountAPI
+  async function initVisitorCounter() {
+    try {
+      const counterElement = document.getElementById('visitorCount');
+      // چک می‌کند که آیا کاربر در این مرورگر قبلاً سایت را دیده یا خیر (برای جلوگیری از احتساب مراتب تکراری)
+      const hasVisited = localStorage.getItem('alpha_site_visited');
+      
+      let url = 'https://api.countapi.xyz/hit/soheilalpha9-github-io/visits';
+      if (hasVisited) {
+        // اگر قبلاً بازدید کرده بود، فقط تعداد را می‌خواند و مقدار را اضافه نمی‌کند (آدم‌های تکراری حساب نمی‌شوند)
+        url = 'https://api.countapi.xyz/get/soheilalpha9-github-io/visits';
+      } else {
+        localStorage.setItem('alpha_site_visited', 'true');
+      }
+
+      const response = await fetch(url);
+      const data = await response.json();
+      counterElement.textContent = data.value.toLocaleString('fa-IR');
+    } catch (error) {
+      // حالت پشتیبان در صورت خطای اتصال
+      document.getElementById('visitorCount').textContent = 'فعال';
+    }
+  }
+
+  initVisitorCounter();
+
   // Lightbox Scripts
   function openLightbox(imgSrc) {
     const lightbox = document.getElementById('lightbox');
